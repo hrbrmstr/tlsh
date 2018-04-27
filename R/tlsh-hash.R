@@ -16,8 +16,9 @@ tlsh_simple_hash <- function(x) {
   }
 }
 
+#' Compute the difference between two character hashes
+#'
 #' @md
-#' @rdname tlsh_simple_hash
 #' @param x,y two hash fingerprints to compare
 #' @export
 tlsh_simple_diff <- function(x, y) {

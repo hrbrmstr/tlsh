@@ -36,10 +36,10 @@ streams.
 
 The following functions are implemented:
 
-  - `tlsh_simple_diff`: Compute TLSH hash for a character or raw vector
-    and return hash fingerprint
   - `tlsh_simple_hash`: Compute TLSH hash for a character or raw vector
     and return hash fingerprint
+  - `tlsh_simple_diff`: Compute the difference between two character
+    hashes
 
 TODO: Document DSL
 
