@@ -10,6 +10,18 @@
 for local sensitivity hashing. Methods are provided to compute and compare
 hashes from character/byte streams.
 }
+\references{
+\itemize{
+\item Jonathan Oliver, Chun Cheng and Yanggui Chen,
+"\href{https://github.com/trendmicro/tlsh/blob/master/TLSH_CTC_final.pdf}{TLSH - A Locality Sensitive Hash}"
+4th Cybercrime and Trustworthy Computing Workshop, Sydney, November 2013
+\item Jonathan Oliver, Scott Forman and Chun Cheng,
+"\href{https://github.com/trendmicro/tlsh/blob/master/Attacking_LSH_and_Sim_Dig.pdf}{Using Randomization to Attack Similarity Digests}"
+Applications and Techniques in Information Security. Springer Berlin Heidelberg, 2014. 199-210.
+\item Jonathan Oliver and Jayson Pryde's
+\href{http://blog.trendmicro.com/trendlabs-security-intelligence/smart-whitelisting-using-locality-sensitive-hashing/}{Trend Micro Blog Post}
+}
+}
 \author{
 Bob Rudis (bob@rud.is)
 }
