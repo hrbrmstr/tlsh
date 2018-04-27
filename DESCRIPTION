@@ -1,0 +1,28 @@
+Package: tlsh
+Type: Package
+Title: Local Sensitivity Hashing Using the 'Trend Micro' 'TLSH' Implementation
+Version: 0.1.0
+Date: 2018-04-27
+Authors@R: c(
+    person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"), 
+           comment = c(ORCID = "0000-0001-5670-2640")),
+    person("Trend Micro", comment = "https://github.com/trendmicro/tlsh", 
+           role = c("cph"))
+  )
+Maintainer: Bob Rudis <bob@rud.is>
+Description: 'Trend Micro' provides an open source library <https://github.com/trendmicro/tlsh/> 
+   for local sensitivity hashing. Methods are provided to compute and compare
+   hashes from character/byte streams.
+URL: https://github.com/hrbrmstr/tlsh
+BugReports: https://github.com/hrbrmstr/tlsh/issues
+Encoding: UTF-8
+License: Apache License 2.0 | file LICENSE
+Suggests:
+    testthat,
+    covr
+Depends:
+    R (>= 3.2.0)
+Imports:
+    Rcpp
+RoxygenNote: 6.0.1.9000
+LinkingTo: Rcpp

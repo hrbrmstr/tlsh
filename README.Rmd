@@ -1,0 +1,77 @@
+---
+output: rmarkdown::github_document
+---
+
+# tlsh
+
+Local Sensitivity Hashing Using the 'Trend Micro' 'TLSH' Implementation
+
+## Description
+
+'Trend Micro' provides an open source library <https://github.com/trendmicro/tlsh/> for local sensitivity hashing. Methods are provided to compute and compare hashes from character/byte streams.
+   
+## TODO
+
+- [ ] File input
+- [ ] Docs
+- [ ] Tests
+
+## What's Inside The Tin
+
+The following functions are implemented:
+
+## Installation
+
+```{r eval=FALSE}
+devtools::install_github("hrbrmstr/tlsh")
+```
+
+```{r message=FALSE, warning=FALSE, error=FALSE, include=FALSE}
+options(width=120)
+```
+
+## Usage
+
+```{r message=FALSE, warning=FALSE, error=FALSE}
+library(tlsh)
+
+# current verison
+packageVersion("tlsh")
+
+```
+
+## Example
+
+- `index.html` is a static copy of a blog main page with a bunch of `<div>`s with article snippets
+- `index1.html` is the same file as `index.htmnl` with a changed cache timestamp at the end
+- `index2.html` is the same file as `index.html` with one article snippet removed
+- `RMacOSX-FAQ.html` is the CRAN 'R for Mac OS X FAQ'
+
+```{r}
+doc1 <- as.character(xml2::read_html(system.file("extdat", "index.html", package="tlsh")))
+doc2 <- as.character(xml2::read_html(system.file("extdat", "index1.html", package="tlsh")))
+doc3 <- as.character(xml2::read_html(system.file("extdat", "index2.html", package="tlsh")))
+doc4 <- as.character(xml2::read_html(system.file("extdat", "RMacOSX-FAQ.html", package="tlsh")))
+
+# generate hashes
+ 
+(h1 <- tlsh_simple_hash(doc1))
+
+(h2 <- tlsh_simple_hash(doc2))
+
+(h3 <- tlsh_simple_hash(doc3))
+
+(h4 <- tlsh_simple_hash(doc4))
+
+# compute distance
+
+tlsh_simple_diff(h1, h2)
+
+tlsh_simple_diff(h1, h3)
+
+tlsh_simple_diff(h1, h4)
+```
+
+## Code of Conduct
+
+Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
