@@ -15,6 +15,7 @@ Local Sensitivity Hashing Using the 'Trend Micro' 'TLSH' Implementation
 - [ ] File input
 - [ ] Docs
 - [ ] Tests
+- [ ] Reference class-backed DSL
 
 ## What's Inside The Tin
 
@@ -70,6 +71,26 @@ tlsh_simple_diff(h1, h2)
 tlsh_simple_diff(h1, h3)
 
 tlsh_simple_diff(h1, h4)
+```
+
+### Reference class machinations
+
+Just a demo for testing purposes. This will be abstraced by a DSL.
+
+```{r}
+x <- new(Tlsh$tlsh_r)
+
+x$lib_version()
+
+doc1 <- charToRaw(as.character(xml2::read_html(system.file("extdat", "index.html", package="tlsh"))))
+
+x$all_in_one(doc1)
+
+x$update(doc1)
+x$final(0)
+x$is_valid()
+
+x$get_hash()
 ```
 
 ## Code of Conduct

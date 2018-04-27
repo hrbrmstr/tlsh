@@ -5,7 +5,7 @@
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-CharacterVector tlsh_simple_hash_r(std::vector < unsigned char> v) {
+CharacterVector tlsh_simple_hash_r(std::vector < unsigned char > v) {
 
   unsigned char *p_buf = (unsigned char *)&*v.begin();
 

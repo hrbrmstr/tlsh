@@ -16,13 +16,14 @@ Description: 'Trend Micro' provides an open source library <https://github.com/t
 URL: https://github.com/hrbrmstr/tlsh
 BugReports: https://github.com/hrbrmstr/tlsh/issues
 Encoding: UTF-8
+SystemRequirements: C++11
 License: Apache License 2.0 | file LICENSE
 Suggests:
     testthat,
     covr
 Depends:
-    R (>= 3.2.0)
-Imports:
-    Rcpp
+    R (>= 3.2.0),
+    Rcpp (>= 0.12.8)
 RoxygenNote: 6.0.1.9000
 LinkingTo: Rcpp
+RcppModules: TLSH

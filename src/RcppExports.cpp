@@ -6,12 +6,12 @@
 using namespace Rcpp;
 
 // tlsh_simple_hash_r
-CharacterVector tlsh_simple_hash_r(std::vector < unsigned char> v);
+CharacterVector tlsh_simple_hash_r(std::vector < unsigned char > v);
 RcppExport SEXP _tlsh_tlsh_simple_hash_r(SEXP vSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::vector < unsigned char> >::type v(vSEXP);
+    Rcpp::traits::input_parameter< std::vector < unsigned char > >::type v(vSEXP);
     rcpp_result_gen = Rcpp::wrap(tlsh_simple_hash_r(v));
     return rcpp_result_gen;
 END_RCPP
@@ -40,10 +40,13 @@ BEGIN_RCPP
 END_RCPP
 }
 
+RcppExport SEXP _rcpp_module_boot_TLSH();
+
 static const R_CallMethodDef CallEntries[] = {
     {"_tlsh_tlsh_simple_hash_r", (DL_FUNC) &_tlsh_tlsh_simple_hash_r, 1},
     {"_tlsh_tlsh_simple_hash_c", (DL_FUNC) &_tlsh_tlsh_simple_hash_c, 1},
     {"_tlsh_tlsh_diff_fingerprints", (DL_FUNC) &_tlsh_tlsh_diff_fingerprints, 2},
+    {"_rcpp_module_boot_TLSH", (DL_FUNC) &_rcpp_module_boot_TLSH, 0},
     {NULL, NULL, 0}
 };
 

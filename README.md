@@ -15,6 +15,7 @@ streams.
   - \[ \] File input
   - \[ \] Docs
   - \[ \] Tests
+  - \[ \] Reference class-backed DSL
 
 ## What’s Inside The Tin
 
@@ -100,6 +101,40 @@ tlsh_simple_diff(h1, h4)
 ```
 
     ## [1] 334
+
+### Reference class machinations
+
+Just a demo for testing purposes. This will be abstraced by a DSL.
+
+``` r
+x <- new(Tlsh$tlsh_r)
+
+x$lib_version()
+```
+
+    ## [1] "3.9.1 compact hash 1 byte checksum sliding_window=5"
+
+``` r
+doc1 <- charToRaw(as.character(xml2::read_html(system.file("extdat", "index.html", package="tlsh"))))
+
+x$all_in_one(doc1)
+```
+
+    ## [1] "B253F9F3168DC8354B2363E2A585771CD25A803BCEA099C1FBED54ACA790EB5B137346"
+
+``` r
+x$update(doc1)
+x$final(0)
+x$is_valid()
+```
+
+    ## [1] TRUE
+
+``` r
+x$get_hash()
+```
+
+    ## [1] "B253F9F3168DC8354B2363E2A585771CD25A803BCEA099C1FBED54ACA790EB5B137346"
 
 ## Code of Conduct
 
