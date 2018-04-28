@@ -13,8 +13,22 @@ tlsh_finalize(x, force = FALSE)
 and content-body requirements when computing the hash. \strong{Not recommended}.
 Default: \code{FALSE}}
 }
+\value{
+\code{tlsh} object
+}
 \description{
 Calling this "finalizes" the \code{tlsh} object, which means the actual hash value
 for all the content added to it is computed. This should be the the last call
 after all _update_s.
+}
+\examples{
+doc1 <- as.character(xml2::read_html(system.file("extdat", "index.html", package="tlsh")))
+
+tlsh() \%>\%
+  tlsh_update(doc1) \%>\%
+  tlsh_finalize() -> x
+
+tlsh_hash(x)
+
+x
 }

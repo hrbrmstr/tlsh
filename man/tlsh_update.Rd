@@ -12,6 +12,20 @@ tlsh_update(x, content)
 \item{content}{contet to add. See \code{content} parameter of \code{\link[=tlsh]{tlsh()}} for possible values
 and how they are interpreted.}
 }
+\value{
+\code{tlsh} object
+}
 \description{
 Update the \code{tlsh} object with content
+}
+\examples{
+doc1 <- as.character(xml2::read_html(system.file("extdat", "index.html", package="tlsh")))
+
+tlsh() \%>\%
+  tlsh_update(doc1) \%>\%
+  tlsh_finalize() -> x
+
+tlsh_hash(x)
+
+x
 }

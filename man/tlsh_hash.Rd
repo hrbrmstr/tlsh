@@ -15,3 +15,12 @@ length 1 character vector
 \description{
 Retrieve the hex-encoded hash string for a \code{tlsh} object
 }
+\examples{
+doc1 <- as.character(xml2::read_html(system.file("extdat", "index.html", package="tlsh")))
+
+tlsh() \%>\%
+  tlsh_update(doc1) \%>\%
+  tlsh_finalize() -> x
+
+tlsh_hash(x)
+}

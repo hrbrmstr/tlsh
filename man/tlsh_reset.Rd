@@ -12,3 +12,14 @@ tlsh_reset(x)
 \description{
 Modestly lower-cost function that creating a new object.
 }
+\examples{
+doc1 <- as.character(xml2::read_html(system.file("extdat", "index.html", package="tlsh")))
+
+tlsh() \%>\%
+  tlsh_update(doc1) \%>\%
+  tlsh_finalize() -> x
+
+tlsh_hash(x)
+
+x <- tlsh_reset(x)
+}

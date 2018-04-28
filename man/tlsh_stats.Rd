@@ -15,3 +15,14 @@ data frame
 \description{
 Return a data frame of lvalue and q1/2 ratios from a \code{tlsh} object
 }
+\examples{
+doc1 <- as.character(xml2::read_html(system.file("extdat", "index.html", package="tlsh")))
+
+tlsh() \%>\%
+  tlsh_update(doc1) \%>\%
+  tlsh_finalize() -> x
+
+tlsh_hash(x)
+
+tlsh_stats(x)
+}

@@ -24,15 +24,20 @@ specifying \code{content}, the caller can pre-populate the hash with content.
 Tests will performed on \code{content} and the behaviour will be different depending on
 what is passed in:
 \itemize{
-\item Single element character vectors will be checked to see if they are a URL
-or a path to a valid, reachable file. If either the URL or file case matches
-the content will be read in and added to the hash object. Larger files
-will (eventually) be chunked in via the \emph{update} ability of \code{tlsh} objects.
-\item Single element character vectors that are not URLs or files will be
-added in a text content provided they are >50 characters (a limitation of
-\code{tlsh} objects and the underlying algorithm).
-\item Length 1+ character vectors will have each element added in via the \code{update}
-mechanism noted above.
-\item A raw vector will be added as would normally be through other DSL methods
+\item A raw vector will be added without any further processing
+\item A single element character vector will be added without any further processing
+\item A length >1 character vector will have each vector element added via the "update"
+mechanism.
 }
+}
+\examples{
+doc1 <- as.character(xml2::read_html(system.file("extdat", "index.html", package="tlsh")))
+
+tlsh() \%>\%
+  tlsh_update(doc1) \%>\%
+  tlsh_finalize() -> x
+
+tlsh_hash(x)
+
+x
 }

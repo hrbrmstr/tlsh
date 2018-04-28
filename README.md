@@ -27,10 +27,12 @@ streams.
 
 ## TODO
 
-  - \[ \] File input
+  - \[ \] File input utilities
+  - \[ \] File input DSL verb
   - \[ \] Docs
   - \[ \] Tests
-  - \[ \] Reference class-backed DSL
+  - \[ \] `toString()` method
+  - \[X\] Reference class-backed DSL
 
 ## What’s Inside The Tin
 
@@ -69,6 +71,7 @@ devtools::install_github("hrbrmstr/tlsh")
 
 ``` r
 library(tlsh)
+library(tidyverse)
 
 # current verison
 packageVersion("tlsh")
@@ -140,62 +143,51 @@ tlsh_simple_diff(h1, h4)
 
     ## [1] 334
 
-### Reference class machinations
-
-Just a demo for testing purposes. This will be abstraced by a DSL.
+### DSL
 
 ``` r
-x <- new(Tlsh$tlsh_r)
+doc1 <- as.character(xml2::read_html(system.file("extdat", "index.html", package="tlsh")))
 
-x$lib_version()
-```
+tlsh() %>% 
+  tlsh_update(doc1) %>% 
+  tlsh_finalize() -> x
 
-    ## [1] "3.9.1 compact hash 1 byte checksum sliding_window=5"
-
-``` r
-doc1 <- charToRaw(as.character(xml2::read_html(system.file("extdat", "index.html", package="tlsh"))))
-doc2 <- charToRaw(as.character(xml2::read_html(system.file("extdat", "index1.html", package="tlsh"))))
-doc3 <- charToRaw(as.character(xml2::read_html(system.file("extdat", "index2.html", package="tlsh"))))
-doc4 <- charToRaw(as.character(xml2::read_html(system.file("extdat", "RMacOSX-FAQ.html", package="tlsh"))))
-
-x$all_in_one(doc1)
+tlsh_hash(x)
 ```
 
     ## [1] "B253F9F3168DC8354B2363E2A585771CD25A803BCEA099C1FBED54ACA790EB5B137346"
 
 ``` r
-x$reset()
-x$update(doc1)
-x$final(0)
-x$is_valid()
+tlsh_is_valid(x)
 ```
 
     ## [1] TRUE
 
 ``` r
-x$get_hash()
+tlsh_stats(x)
 ```
 
-    ## [1] "B253F9F3168DC8354B2363E2A585771CD25A803BCEA099C1FBED54ACA790EB5B137346"
+    ## # A tibble: 1 x 3
+    ##   l_value q1_ratio q2_ratio
+    ##     <int>    <int>    <int>
+    ## 1      53       15        9
 
 ``` r
-x$all_in_one(doc1)
-```
+doc2 <- charToRaw(as.character(xml2::read_html(system.file("extdat", "index1.html", package="tlsh"))))
 
-    ## [1] "B253F9F3168DC8354B2363E2A585771CD25A803BCEA099C1FBED54ACA790EB5B137346"
+tlsh() %>% 
+  tlsh_update(doc2) %>% 
+  tlsh_finalize() -> y
 
-``` r
-y <- new(Tlsh$tlsh_r)
-y$all_in_one(doc2)
-```
-
-    ## [1] "6153E8F3168DC8355B2363E2A585771CD26A803BCEA099C1FBED44AC9790EB5B137346"
-
-``` r
 tlsh_dist(x, y)
 ```
 
     ## [1] 7
+
+``` r
+tlsh_reset(x)
+tlsh_reset(y)
+```
 
 ## Code of Conduct
 

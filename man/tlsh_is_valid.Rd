@@ -9,6 +9,18 @@ tlsh_is_valid(x)
 \arguments{
 \item{x}{a \code{tlsh} object}
 }
+\value{
+\code{logical}
+}
 \description{
 Test if a \code{tlsh} hash object is valid
+}
+\examples{
+doc1 <- as.character(xml2::read_html(system.file("extdat", "index.html", package="tlsh")))
+
+tlsh() \%>\%
+  tlsh_update(doc1) \%>\%
+  tlsh_finalize() -> x
+
+tlsh_is_valid(x)
 }

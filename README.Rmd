@@ -25,10 +25,12 @@ Local Sensitivity Hashing Using the 'Trend Micro' 'TLSH' Implementation
 
 ## TODO
 
-- [ ] File input
+- [ ] File input utilities
+- [ ] File input DSL verb
 - [ ] Docs
 - [ ] Tests
-- [ ] Reference class-backed DSL
+- [ ] `toString()` method
+- [X] Reference class-backed DSL
 
 ## What's Inside The Tin
 
@@ -66,6 +68,7 @@ options(width=120)
 
 ```{r message=FALSE, warning=FALSE, error=FALSE}
 library(tlsh)
+library(tidyverse)
 
 # current verison
 packageVersion("tlsh")
@@ -104,36 +107,31 @@ tlsh_simple_diff(h1, h3)
 tlsh_simple_diff(h1, h4)
 ```
 
-### Reference class machinations
-
-Just a demo for testing purposes. This will be abstraced by a DSL.
+### DSL
 
 ```{r}
-x <- new(Tlsh$tlsh_r)
+doc1 <- as.character(xml2::read_html(system.file("extdat", "index.html", package="tlsh")))
 
-x$lib_version()
+tlsh() %>% 
+  tlsh_update(doc1) %>% 
+  tlsh_finalize() -> x
 
-doc1 <- charToRaw(as.character(xml2::read_html(system.file("extdat", "index.html", package="tlsh"))))
+tlsh_hash(x)
+
+tlsh_is_valid(x)
+
+tlsh_stats(x)
+
 doc2 <- charToRaw(as.character(xml2::read_html(system.file("extdat", "index1.html", package="tlsh"))))
-doc3 <- charToRaw(as.character(xml2::read_html(system.file("extdat", "index2.html", package="tlsh"))))
-doc4 <- charToRaw(as.character(xml2::read_html(system.file("extdat", "RMacOSX-FAQ.html", package="tlsh"))))
 
-x$all_in_one(doc1)
-
-x$reset()
-x$update(doc1)
-x$final(0)
-x$is_valid()
-
-x$get_hash()
-
-x$all_in_one(doc1)
-
-y <- new(Tlsh$tlsh_r)
-y$all_in_one(doc2)
+tlsh() %>% 
+  tlsh_update(doc2) %>% 
+  tlsh_finalize() -> y
 
 tlsh_dist(x, y)
 
+tlsh_reset(x)
+tlsh_reset(y)
 ```
 
 ## Code of Conduct

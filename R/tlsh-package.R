@@ -20,3 +20,18 @@
 #' - Jonathan Oliver and Jayson Pryde's
 #'    [Trend Micro Blog Post](http://blog.trendmicro.com/trendlabs-security-intelligence/smart-whitelisting-using-locality-sensitive-hashing/)
 NULL
+
+#' tlsh exported operators
+#'
+#' The following functions are imported and then re-exported
+#' from the tlsh package to enable use of the magrittr
+#' pipe operator with no additional library calls
+#'
+#' @name tlsh-exports
+NULL
+
+#' @importFrom magrittr %>%
+#' @name %>%
+#' @export
+#' @rdname tlsh-exports
+NULL

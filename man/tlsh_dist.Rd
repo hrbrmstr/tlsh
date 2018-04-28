@@ -15,3 +15,12 @@ distance value
 \description{
 Compute distance between two TLSH objects
 }
+\examples{
+doc1 <- as.character(xml2::read_html(system.file("extdat", "index.html", package="tlsh")))
+doc2 <- charToRaw(as.character(xml2::read_html(system.file("extdat", "index1.html", package="tlsh"))))
+
+x <- tlsh(doc1) \%>\% tlsh_finalize()
+y <- tlsh(doc2) \%>\% tlsh_finalize()
+
+tlsh_dist(x, y)
+}
