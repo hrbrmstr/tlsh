@@ -9,6 +9,9 @@ tlsh_simple_diff(x, y)
 \arguments{
 \item{x, y}{two hash fingerprints to compare}
 }
+\value{
+\code{NA} will be returned if \code{x} or \code{y} are not valid hashes
+}
 \description{
 Compute the difference between two character hashes
 }

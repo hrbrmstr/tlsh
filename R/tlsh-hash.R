@@ -20,7 +20,9 @@ tlsh_simple_hash <- function(x) {
 #'
 #' @md
 #' @param x,y two hash fingerprints to compare
+#' @return `NA` will be returned if `x` or `y` are not valid hashes
 #' @export
 tlsh_simple_diff <- function(x, y) {
+  if ((nchar(x) < 70) | (nchar(y) < 70)) return(NA_integer_)
   tlsh_diff_fingerprints(x, y)
 }

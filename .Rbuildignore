@@ -11,3 +11,5 @@
 ^tmp$
 ^CONDUCT\.md$
 ^LICENSE\.txt$
+^appveyor\.yml$
+^codecov\.yml$

@@ -1,4 +1,11 @@
 
+[![Travis-CI Build
+Status](https://travis-ci.org/hrbrmstr/tlsh.svg?branch=master)](https://travis-ci.org/hrbrmstr/tlsh)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/hrbrmstr/tlsh?branch=master&svg=true)](https://ci.appveyor.com/project/hrbrmstr/tlsh)
+[![Coverage
+Status](https://img.shields.io/codecov/c/github/hrbrmstr/tlsh/master.svg)](https://codecov.io/github/hrbrmstr/tlsh?branch=master)
+
 # tlsh
 
 Local Sensitivity Hashing Using the ‘Trend Micro’ ‘TLSH’ Implementation

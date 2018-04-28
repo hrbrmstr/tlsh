@@ -10,6 +10,7 @@
 #' @author Bob Rudis (bob@@rud.is)
 #' @useDynLib tlsh
 #' @importFrom Rcpp sourceCpp
+#' @importFrom methods new
 #' @references
 #' - Jonathan Oliver, Chun Cheng and Yanggui Chen,
 #'    "[TLSH - A Locality Sensitive Hash](https://github.com/trendmicro/tlsh/blob/master/TLSH_CTC_final.pdf)"
