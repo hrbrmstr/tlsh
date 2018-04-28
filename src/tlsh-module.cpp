@@ -57,6 +57,10 @@ void tlsh_r::from_tlsh_hash_string(std::string hash_string) {
   if (ret != 0) Rcpp::warning("Character hash not valid.");
 }
 
+Tlsh *tlsh_r::get_obj() {
+  return(tlsh_obj);
+}
+
 RCPP_MODULE(TLSH) {
 
   using namespace Rcpp;
@@ -73,7 +77,6 @@ RCPP_MODULE(TLSH) {
     .method("l_value", &tlsh_r::l_value, "Hash diagnostics")
     .method("q1_ratio", &tlsh_r::q1_ratio, "Hash diagnostics")
     .method("q2_ratio", &tlsh_r::q2_ratio, "Hash diagnostics")
-    // .method("compute_difference", &tlsh_r::compute_difference, "Calcuate the difference metric between two TLSH hashes")
     .method("from_tlsh_hash_string", &tlsh_r::from_tlsh_hash_string, "Turn a TLSH hash string into an object value")
  ;
 

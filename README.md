@@ -36,10 +36,26 @@ streams.
 
 The following functions are implemented:
 
+“Simple” interface (quick and dirty hashing):
+
   - `tlsh_simple_hash`: Compute TLSH hash for a character or raw vector
     and return hash fingerprint
   - `tlsh_simple_diff`: Compute the difference between two character
     hashes
+
+DSL: (WIP)
+
+  - `tlsh`: Create a new ‘tlsh’ object
+  - `tlsh_reset`: Clear content and hash computation from a ‘tlsh’
+    object fingerprint
+  - `tlsh_update`: Update the ‘tlsh’ object with content
+  - `tlsh_finalize`: Finalize a ‘tlsh’ object hash
+  - `tlsh_is_valid`: Test if a ‘tlsh’ hash object is valid
+  - `tlsh_hash`: Retrieve the hex-encoded hash string for a ‘tlsh’
+    object
+  - `tlsh_dist`: Compute distance between two TLSH objects
+  - `tlsh_stats`: Return a data frame of lvalue and q1/2 ratios from a
+    ‘tlsh’ object
 
 TODO: Document DSL
 
@@ -138,6 +154,9 @@ x$lib_version()
 
 ``` r
 doc1 <- charToRaw(as.character(xml2::read_html(system.file("extdat", "index.html", package="tlsh"))))
+doc2 <- charToRaw(as.character(xml2::read_html(system.file("extdat", "index1.html", package="tlsh"))))
+doc3 <- charToRaw(as.character(xml2::read_html(system.file("extdat", "index2.html", package="tlsh"))))
+doc4 <- charToRaw(as.character(xml2::read_html(system.file("extdat", "RMacOSX-FAQ.html", package="tlsh"))))
 
 x$all_in_one(doc1)
 ```
@@ -145,6 +164,7 @@ x$all_in_one(doc1)
     ## [1] "B253F9F3168DC8354B2363E2A585771CD25A803BCEA099C1FBED54ACA790EB5B137346"
 
 ``` r
+x$reset()
 x$update(doc1)
 x$final(0)
 x$is_valid()
@@ -157,6 +177,25 @@ x$get_hash()
 ```
 
     ## [1] "B253F9F3168DC8354B2363E2A585771CD25A803BCEA099C1FBED54ACA790EB5B137346"
+
+``` r
+x$all_in_one(doc1)
+```
+
+    ## [1] "B253F9F3168DC8354B2363E2A585771CD25A803BCEA099C1FBED54ACA790EB5B137346"
+
+``` r
+y <- new(Tlsh$tlsh_r)
+y$all_in_one(doc2)
+```
+
+    ## [1] "6153E8F3168DC8355B2363E2A585771CD26A803BCEA099C1FBED44AC9790EB5B137346"
+
+``` r
+tlsh_dist(x, y)
+```
+
+    ## [1] 7
 
 ## Code of Conduct
 

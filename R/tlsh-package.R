@@ -5,7 +5,7 @@
 #'  hashes from character/byte streams.
 #'
 #' @md
-#' @name tlsh
+#' @name tlsh-package
 #' @docType package
 #' @author Bob Rudis (bob@@rud.is)
 #' @useDynLib tlsh

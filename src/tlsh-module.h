@@ -42,6 +42,7 @@ public:
 
   void from_tlsh_hash_string(std::string);
 
+  Tlsh *get_obj();
 
 };
 
