@@ -6,6 +6,10 @@
 #' @param x length 1 `character` or `raw` vector
 #' @export
 tlsh_simple_hash <- function(x) {
+  if (is.na(x) | is.null(x)) {
+    warning("Invalid byte stream")
+    return(NA_character_)
+  }
   if (inherits(x, "character")) {
     x <- x[1]
     if (nchar(x) < 50L) {
