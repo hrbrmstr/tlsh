@@ -10,5 +10,5 @@ tlsh_simple_hash(x)
 \item{x}{length 1 \code{character} or \code{raw} vector}
 }
 \description{
-Compute TLSH hash for a character or raw vector and return hash fingerprint
+A warning will be issued if the input byte stream is <50 bytes.
 }

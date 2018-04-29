@@ -1,15 +1,23 @@
 #' Compute TLSH hash for a character or raw vector and return hash fingerprint
 #'
+#' A warning will be issued if the input byte stream is <50 bytes.
+#'
 #' @md
 #' @param x length 1 `character` or `raw` vector
 #' @export
 tlsh_simple_hash <- function(x) {
   if (inherits(x, "character")) {
     x <- x[1]
-    if (nchar(x) < 50L) stop("Byte stream minimum length is 50 bytes", call.=FALSE)
+    if (nchar(x) < 50L) {
+      warning("Byte stream minimum length is 50 bytes.")
+      return(NA_character_)
+    }
     tlsh_simple_hash_c(x)
   } else if (inherits(x, "raw")) {
-    if (length(x) < 50L) stop("Byte stream minimum length is 50 bytes", call.=FALSE)
+    if (length(x) < 50L) {
+      warning("Byte stream minimum length is 50 bytes.")
+      return(NA_character_)
+    }
     tlsh_simple_hash_r(x)
   } else {
     NULL
