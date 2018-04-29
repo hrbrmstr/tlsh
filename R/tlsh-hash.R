@@ -20,7 +20,8 @@ tlsh_simple_hash <- function(x) {
     }
     tlsh_simple_hash_r(x)
   } else {
-    NULL
+    warning("Byte stream must be character or raw.")
+    NA_character_
   }
 }
 
